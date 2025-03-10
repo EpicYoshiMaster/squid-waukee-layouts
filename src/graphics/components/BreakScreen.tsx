@@ -76,6 +76,7 @@ const StyledBreakScreen = styled.div`
 
 const Content = styled.div`
 	position: relative;
+	font-family: 'Saira Extra', Saira, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	width: 100%;
 	height: 100%;
 	display: grid;

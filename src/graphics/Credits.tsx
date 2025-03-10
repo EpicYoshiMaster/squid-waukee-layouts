@@ -77,7 +77,7 @@ export function Credits() {
                     </CreditsRow>}
                     {(headTO.length > 0 || poolCaptains.length > 0) && <CreditsRow>
                         <LogoRow>
-                            <Logo src="/bundles/squid-waukee-layouts/images/Chi-Shoals_Logo_Transparent_Green.png" />
+                            <Logo src="/bundles/squid-waukee-layouts/images/SquidWaukeeLogo.png" />
                         </LogoRow>
                         <CreditsColumns>
                             {headTO.length > 0 && <Rows>
@@ -120,15 +120,8 @@ export function Credits() {
                     </CreditsRow>
                     <CreditsRow>
                         <LogoRow>
-                            <HeaderText>I Play Games!</HeaderText>
-                            <IPGLogo src="/bundles/squid-waukee-layouts/images/I_Play_Games.png" />
-                        </LogoRow>
-                        <NameText>Equipment, support, and collaboration</NameText>
-                    </CreditsRow>
-                    <CreditsRow>
-                        <LogoRow>
-                            <LibraryText>Harold Washington Library Staff</LibraryText>
-                            <LibraryLogo src="/bundles/squid-waukee-layouts/images/CPL_Logo.png" />
+                            <LibraryText>GameTogetherMKE Staff</LibraryText>
+                            <LibraryLogo src="/bundles/chishoals-layouts/images/GameTogetherMKELogo.jpg" />
                         </LogoRow>
                         <NameText>Location and support</NameText>
                     </CreditsRow>

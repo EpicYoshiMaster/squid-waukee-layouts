@@ -108,7 +108,7 @@
     "fontfaceobserver": "^2.3.0",
     "react": "*",
     "react-dom": "*",
-    "styled-components": "^6.1.8",
+    "styled-components": "^6.1.15",
     "ts-node": "*",
     "type-fest": "^4.30.2"
   },

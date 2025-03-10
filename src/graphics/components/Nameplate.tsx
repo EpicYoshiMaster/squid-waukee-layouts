@@ -61,17 +61,17 @@ export const Nameplate: React.FC<NameplateProps> = ({ show, name, pronouns, tag,
 		$animLength={animationLength || 1000}
 		onAnimationEnd={(event) => { onAnimEnd(event.animationName); }}>
 			<Name>
-				<FittedText text={name} font="Splatoon" align="center" maxWidth={580}  />
+				<FittedText text={name} font="Saira" align="center" maxWidth={580}  />
 			</Name>
 			<Tag>
-				<FittedText text={tag} font="Splatoon" align="left" maxWidth={500}  />
+				<FittedText text={tag} font="Saira" align="left" maxWidth={500}  />
 			</Tag>
 			{pronouns !== "" && (
 			<Pronouns>
 			{
 				pronounsSplit.map((item, index) => {
 					return <PronounsText key={index}>
-						<FittedText text={item} font="Splatoon" align="center" maxWidth={75}  />
+						<FittedText text={item} font="Saira" align="center" maxWidth={75}  />
 					</PronounsText>;
 				})
 			}

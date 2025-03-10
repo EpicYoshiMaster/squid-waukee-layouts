@@ -10,20 +10,20 @@
 	/* Intermission & Omnibar */
 
 	--feed-large-color: #eae6f3;
-	--feed-large-border: #f04888;
+	--feed-large-border: #262261;
 
 	--feed-small-color: #eae6f3;
-	--feed-small-border: #f04888;
+	--feed-small-border: #262261;
 
-	--omnibar-color: #f04888;
+	--omnibar-color: #262261;
 	--omnibar-text: #ffffff;
-	--omnibar-divider: #eae6f3;
+	--omnibar-divider: #F3EC31;
 
-	--teams-border: #f04888;
-	--teams-text: #f04888;
-	--teams-inner: #eae6f3;
-	--teams-score-text: #eae6f3;
-	--teams-score-inner: #f04888;
+	--teams-border: #262261;
+	--teams-text: #262261;
+	--teams-inner: #F3EC31;
+	--teams-score-text: #F3EC31;
+	--teams-score-inner: #262261;
 
 	/* Commentary */ 
 
@@ -34,14 +34,14 @@
 	/*--commentary-pronouns-outline: #000000;*/
 
 	/* Game */
-	--game-title-text: #eae6f3;
-	--game-title-bg: #f04888;
+	--game-title-text: #F3EC31;
+	--game-title-bg: #262261;
 
-	--game-main-text: #f04888;
-	--game-main-bg: #eae6f3;
+	--game-main-text: #262261;
+	--game-main-bg: #F3EC31;
 
-	--game-sub-text: #eae6f3;
-	--game-sub-bg: #f04888;
+	--game-sub-text: #F3EC31;
+	--game-sub-bg: #262261;
 
 	--game-border: #b31451;
 
@@ -52,12 +52,18 @@
 }
 
 @font-face {
-	font-family: Splatoon;
-	src: url('../../fonts/project_paintball.otf');
+    font-family: Saira;
+    src: url('../../fonts/Saira_Condensed-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Saira Extra';
+    src: url('../../fonts/Saira_ExtraCondensed-ExtraBoldItalic.ttf');
+    font-weight: bolder;
 }
 
 body {
-  font-family: Splatoon;
+  font-family: Saira;
   margin: 0;
 }
 

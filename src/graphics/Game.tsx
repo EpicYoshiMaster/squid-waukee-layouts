@@ -78,7 +78,7 @@ export function Game() {
 			<Content>
 				<Scoreboard $show={showScoreboard}>
 					<InfoBox>
-						<FittedText text={`${currentEvent.name} ${currentEvent.number > 0 ? '#' + currentEvent.number  : ''}${matchData.matchInfo !== "" ? " - " + matchData.matchInfo : ""}`} font="Splatoon" align="left" maxWidth={FullWidth} />
+						<FittedText text={`${currentEvent.name} ${currentEvent.number > 0 ? '#' + currentEvent.number  : ''}${matchData.matchInfo !== "" ? " - " + matchData.matchInfo : ""}`} font="Saira" align="left" maxWidth={FullWidth} />
 					</InfoBox>
 					<GameScoreInfoBox 
 						color={!matchData.swapColor ? matchData.matchColor.teamA : matchData.matchColor.teamB} 
@@ -97,7 +97,7 @@ export function Game() {
 				</Scoreboard>
 				<Commentators $show={showCommentary}>
 					<InfoBox>
-						<FittedText text="Commentary" font="Splatoon" align="left" maxWidth={FullWidth} />
+						<FittedText text="Commentary" font="Saira" align="left" maxWidth={FullWidth} />
 					</InfoBox>
 					<GameCommentatorInfoBox
 						name={commentatorOne.name}
