@@ -65,8 +65,8 @@ export function Game() {
 
 	const tl = gsap.timeline();
 
-	const [showScoreboard, setShowScoreboard] = useState(true);
-	const [showCommentary, setShowCommentary] = useState(true);
+	const [showScoreboard, setShowScoreboard] = useState(false);
+	const [showCommentary, setShowCommentary] = useState(false);
 
 	useListenFor('scoresControl', (value: boolean) => {
 		setShowScoreboard(value);

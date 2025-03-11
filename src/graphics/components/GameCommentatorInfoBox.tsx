@@ -22,11 +22,9 @@ export const GameCommentatorInfoBox: React.FC<GameCommentatorInfoBoxProps> = ({ 
 					{tag !== "" && <FittedText text={tag} font="Saira" align="left" maxWidth={pronouns !== "" ? nameWidth : fullWidth}  />}
 				</CarouselComponent>
 			</CommentatorName>
-			{pronouns !== "" &&
 			<CommentatorPronouns className="pronouns-box">
 				<FittedText text={pronouns} font="Saira" align="left" maxWidth={pronounsWidth} />
 			</CommentatorPronouns>
-			}
 		</CommentatorBox>
 	)
 }
@@ -58,7 +56,7 @@ const CommentatorPronouns = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 105px;
+	width: 0;
 	height: 100%;
 	font-size: 1.5rem;
 
@@ -66,4 +64,6 @@ const CommentatorPronouns = styled.div`
 	background-color: var(--game-sub-bg);
 	border-left: 4px solid var(--game-border);
 	border-radius: 0 4px 4px 0;
+
+	overflow: hidden;
 `;
