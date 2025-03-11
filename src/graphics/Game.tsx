@@ -75,6 +75,11 @@ export function Game() {
 			duration: 0.75,
 			ease: value ? Power3.easeOut : Power3.easeIn
 		});
+		tl.to('.scoreboard .score-box', {
+			width: value ? ScoreWidth : 0,
+			duration: 0.5,
+			ease: value ? Power3.easeOut : Power3.easeIn
+		}, '-=0.7')
 	}, { bundle: 'squidwest-layout-controls' });
 
 	useListenFor('commsControl', (value: boolean) => {

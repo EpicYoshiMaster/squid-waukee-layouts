@@ -58,12 +58,12 @@ const CommentatorPronouns = styled.div`
 	justify-content: center;
 	width: 0;
 	height: 100%;
+	overflow: hidden;
+
 	font-size: 1.5rem;
 
 	color: var(--game-sub-text);
 	background-color: var(--game-sub-bg);
 	border-left: 4px solid var(--game-border);
 	border-radius: 0 4px 4px 0;
-
-	overflow: hidden;
 `;
