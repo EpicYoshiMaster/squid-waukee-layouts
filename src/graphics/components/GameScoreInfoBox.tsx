@@ -60,7 +60,7 @@ const ColorDisplay = styled.div<{ $color: string }>`
 	min-width: ${colorDisplayWidth}px;
 	margin-right: ${colorMargin}px;
 	height: 100%;
-	
+
 	border-radius: 5px;
 	background-color: ${({ $color }) => $color};
 `;

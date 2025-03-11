@@ -22,8 +22,8 @@ export const GameCommentatorInfoBox: React.FC<GameCommentatorInfoBoxProps> = ({ 
 					{tag !== "" && <FittedText text={tag} font="Saira" align="left" maxWidth={pronouns !== "" ? nameWidth : fullWidth}  />}
 				</CarouselComponent>
 			</CommentatorName>
-			{pronouns !== "" && 
-			<CommentatorPronouns>
+			{pronouns !== "" &&
+			<CommentatorPronouns className="pronouns-box">
 				<FittedText text={pronouns} font="Saira" align="left" maxWidth={pronounsWidth} />
 			</CommentatorPronouns>
 			}

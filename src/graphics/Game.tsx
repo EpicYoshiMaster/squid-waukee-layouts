@@ -9,8 +9,9 @@ import { EventData, EventInfo } from 'schemas/eventData';
 import { GameScoreInfoBox } from './components/GameScoreInfoBox';
 import { FittedText } from './components/FittedText';
 import { GameCommentatorInfoBox } from './components/GameCommentatorInfoBox';
+import { gsap, Power3 } from "gsap";
 
-const defaultMatchData: MatchData = { 
+const defaultMatchData: MatchData = {
 	matchInfo: "Round 1",
 	teamA: "Team A",
 	teamB: "Team B",
@@ -35,8 +36,8 @@ export function Game() {
 
 	const [comms] = useReplicant<CommentatorData>('commentators', {
 		bundle: 'squidwest-layout-controls',
-		defaultValue: { 
-			commentatorOne: defaultCommentator, 
+		defaultValue: {
+			commentatorOne: defaultCommentator,
 			commentatorTwo: defaultCommentator,
 			autoShow: true,
 			delay: 3000,
@@ -62,40 +63,62 @@ export function Game() {
 		setCurrentEvent(eventData.currentEvent);
 	}, [eventData]);
 
-	const [showScoreboard, setShowScoreboard] = useState(false);
-	const [showCommentary, setShowCommentary] = useState(false);
+	const tl = gsap.timeline();
+
+	const [showScoreboard, setShowScoreboard] = useState(true);
+	const [showCommentary, setShowCommentary] = useState(true);
 
 	useListenFor('scoresControl', (value: boolean) => {
 		setShowScoreboard(value);
+		tl.to('.scoreboard', {
+			width: value ? FullWidth + 10 + 6 : 0,
+			duration: 0.75,
+			ease: value ? Power3.easeOut : Power3.easeIn
+		});
 	}, { bundle: 'squidwest-layout-controls' });
 
 	useListenFor('commsControl', (value: boolean) => {
 		setShowCommentary(value);
+		tl.to('.commentators', {
+			width: value ? FullWidth + 10 + 6 : 0,
+			duration: 0.75,
+			ease: value ? Power3.easeOut : Power3.easeIn
+		});
+		tl.to('.commentators .pronouns-box', {
+			width: value ? 105 : 0,
+			duration: 0.5,
+			ease: value ? Power3.easeOut : Power3.easeIn
+		}, '-=0.7')
 	}, { bundle: 'squidwest-layout-controls' });
 
 	return (
 		<StyledOmnibarOnly>
 			<Content>
-				<Scoreboard $show={showScoreboard}>
+				<Scoreboard $show={showScoreboard} className='scoreboard'>
 					<InfoBox>
-						<FittedText text={`${currentEvent.name} ${currentEvent.number > 0 ? '#' + currentEvent.number  : ''}${matchData.matchInfo !== "" ? " - " + matchData.matchInfo : ""}`} font="Saira" align="left" maxWidth={FullWidth} />
+						<FittedText
+							text={`${currentEvent.name} ${currentEvent.number > 0 ? '#' + currentEvent.number  : ''}${matchData.matchInfo !== "" ? " - " + matchData.matchInfo : ""}`}
+							font="Saira"
+							align="left"
+							maxWidth={FullWidth}
+						/>
 					</InfoBox>
-					<GameScoreInfoBox 
-						color={!matchData.swapColor ? matchData.matchColor.teamA : matchData.matchColor.teamB} 
-						team={matchData.teamA || ""} 
+					<GameScoreInfoBox
+						color={!matchData.swapColor ? matchData.matchColor.teamA : matchData.matchColor.teamB}
+						team={matchData.teamA || ""}
 						score={matchData.scoreA || 0}
 						mainWidth={TeamWidth}
 						secondaryWidth={ScoreWidth}
 					/>
-					<GameScoreInfoBox 
-						color={matchData.swapColor ? matchData.matchColor.teamA : matchData.matchColor.teamB} 
-						team={matchData.teamB || ""} 
+					<GameScoreInfoBox
+						color={matchData.swapColor ? matchData.matchColor.teamA : matchData.matchColor.teamB}
+						team={matchData.teamB || ""}
 						score={matchData.scoreB || 0}
 						mainWidth={TeamWidth}
 						secondaryWidth={ScoreWidth}
 					/>
 				</Scoreboard>
-				<Commentators $show={showCommentary}>
+				<Commentators $show={showCommentary} className='commentators'>
 					<InfoBox>
 						<FittedText text="Commentary" font="Saira" align="left" maxWidth={FullWidth} />
 					</InfoBox>
@@ -108,7 +131,7 @@ export function Game() {
 						nameWidth={CommentatorWidth}
 						pronounsWidth={PronounsWidth}
 					/>
-					<GameCommentatorInfoBox 
+					<GameCommentatorInfoBox
 						name={commentatorTwo.name}
 						pronouns={commentatorTwo.pronouns}
 						tag={commentatorTwo.tag}
@@ -151,18 +174,18 @@ const InfoBox = styled.div`
 
 const Scoreboard = styled.div<{ $show: boolean }>`
 	position: relative;
-	opacity: ${({ $show }) => $show ? 1 : 0};
-	
-	transition: opacity 0.75s ease;
+	overflow: hidden;
+
+	width: 0;
 `;
 
 const Commentators = styled.div<{ $show: boolean }>`
 	margin-top: 1rem;
 
 	position: relative;
-	opacity: ${({ $show }) => $show ? 1 : 0};
-	
-	transition: opacity 0.75s ease;	
+	overflow: hidden;
+
+	width: 0;
 `;
 
 const root = createRoot(document.getElementById('root')!);
