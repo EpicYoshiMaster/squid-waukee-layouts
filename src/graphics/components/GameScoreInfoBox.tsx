@@ -21,7 +21,7 @@ export const GameScoreInfoBox: React.FC<GameTeamScoreBoxProps> = ({ team, score,
 				<ColorDisplay $color={color} />
 				<FittedText text={team} font="Saira" align="left" maxWidth={mainWidth - paddingWidth - colorDisplayWidth - colorMargin} />
 			</TeamBox>
-			<ScoreBox $width={secondaryWidth}>
+			<ScoreBox className="score-box">
 				<FittedText text={`${score}`} font="Saira" align="center" maxWidth={secondaryWidth - 5} />
 			</ScoreBox>
 		</TeamAndScore>
@@ -60,17 +60,18 @@ const ColorDisplay = styled.div<{ $color: string }>`
 	min-width: ${colorDisplayWidth}px;
 	margin-right: ${colorMargin}px;
 	height: 100%;
-	
+
 	border-radius: 5px;
 	background-color: ${({ $color }) => $color};
 `;
 
-const ScoreBox = styled.div<{ $width: number }>`
+const ScoreBox = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: ${({ $width }) => $width}px;
+	width: 0px;
 	height: 100%;
+	overflow: hidden;
 
 	font-size: 3rem;
 
