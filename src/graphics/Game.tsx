@@ -46,9 +46,50 @@ export function Game() {
 		}
 	});
 
+	const tl = gsap.timeline();
+
+	const [showScoreboard, setShowScoreboard] = useState(false);
+	const [showCommentary, setShowCommentary] = useState(false);
+
+	function animateScoreboard(show: boolean) {
+		tl.to('.scoreboard', {
+			width: show ? FullWidth + 10 + 6 : 0,
+			duration: 0.75,
+			ease: show ? Power3.easeOut : Power3.easeIn
+		});
+		tl.to('.scoreboard .score-box', {
+			width: show ? ScoreWidth : 0,
+			duration: 0.5,
+			ease: show ? Power3.easeOut : Power3.easeIn
+		}, '-=0.7')
+	}
+
+	function animateCommentators(show: boolean) {
+		tl.to('.commentators', {
+			width: show ? FullWidth + 10 + 6 : 0,
+			duration: 0.75,
+			ease: show ? Power3.easeOut : Power3.easeIn
+		});
+		tl.to('.commentators .pronouns-box', {
+			width: show ? 105 : 0,
+			duration: 0.5,
+			ease: show ? Power3.easeOut : Power3.easeIn
+		}, '-=0.7')
+	}
+
+	useListenFor('scoresControl', (value: boolean) => {
+		setShowScoreboard(value);
+		animateScoreboard(value);
+	}, { bundle: 'squidwest-layout-controls' });
+
+	useListenFor('commsControl', (value: boolean) => {
+		setShowCommentary(value);
+		animateCommentators(value);
+	}, { bundle: 'squidwest-layout-controls' });
+
 	const [currentEvent, setCurrentEvent] = useState<EventInfo>({ name: "Current Event Name", location: "Event Location", number: 1, date: "Today" });
-	const [commentatorOne, setCommentatorOne ] = useState<CommentatorInfo>(defaultCommentator);
-	const [commentatorTwo, setCommentatorTwo ] = useState<CommentatorInfo>(defaultCommentator);
+	const [commentatorOne, setCommentatorOne] = useState<CommentatorInfo>(defaultCommentator);
+	const [commentatorTwo, setCommentatorTwo] = useState<CommentatorInfo>(defaultCommentator);
 
 	useEffect(() => {
 		if(!comms) return;
@@ -58,43 +99,14 @@ export function Game() {
 	}, [comms]);
 
 	useEffect(() => {
+		animateCommentators(showCommentary);
+	}, [commentatorOne, commentatorTwo]);
+
+	useEffect(() => {
 		if(!eventData) return;
 
 		setCurrentEvent(eventData.currentEvent);
 	}, [eventData]);
-
-	const tl = gsap.timeline();
-
-	const [showScoreboard, setShowScoreboard] = useState(false);
-	const [showCommentary, setShowCommentary] = useState(false);
-
-	useListenFor('scoresControl', (value: boolean) => {
-		setShowScoreboard(value);
-		tl.to('.scoreboard', {
-			width: value ? FullWidth + 10 + 6 : 0,
-			duration: 0.75,
-			ease: value ? Power3.easeOut : Power3.easeIn
-		});
-		tl.to('.scoreboard .score-box', {
-			width: value ? ScoreWidth : 0,
-			duration: 0.5,
-			ease: value ? Power3.easeOut : Power3.easeIn
-		}, '-=0.7')
-	}, { bundle: 'squidwest-layout-controls' });
-
-	useListenFor('commsControl', (value: boolean) => {
-		setShowCommentary(value);
-		tl.to('.commentators', {
-			width: value ? FullWidth + 10 + 6 : 0,
-			duration: 0.75,
-			ease: value ? Power3.easeOut : Power3.easeIn
-		});
-		tl.to('.commentators .pronouns-box', {
-			width: value ? 105 : 0,
-			duration: 0.5,
-			ease: value ? Power3.easeOut : Power3.easeIn
-		}, '-=0.7')
-	}, { bundle: 'squidwest-layout-controls' });
 
 	return (
 		<StyledOmnibarOnly>
