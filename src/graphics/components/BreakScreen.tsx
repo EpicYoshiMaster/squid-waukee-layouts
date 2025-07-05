@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
-import { createRoot } from 'react-dom/client';
 import { Background } from './Background';
-import { YoutubeLogo, DiscordLogo, TwitterLogo, Butterfly  } from "@phosphor-icons/react";
 import { useReplicant } from '@nodecg/react-hooks';
 import { Socials } from 'schemas/socials';
 import { EventData, EventInfo } from 'schemas/eventData';
 import { CarouselComponent } from './CarouselComponent';
+import { getSocialPlatformIcon } from '../../helpers/utils';
 
 interface BreakScreenProps {
 	message: string;
@@ -44,24 +43,23 @@ export const BreakScreen: React.FC<BreakScreenProps> = ({ message }) => {
 							</CarouselItem>
 						</CarouselComponent>
 					</CarouselWrapper>
-					<SocialsRow>
-						<SocialsItem>
-							<YoutubeLogo />
-							<SocialsText>{socials ? socials.youtube : ""}</SocialsText>
-						</SocialsItem>
-						<SocialsItem>
-							<TwitterLogo />
-							<SocialsText>{socials ? socials.twitter : ""}</SocialsText>
-						</SocialsItem>
-						<SocialsItem>
-							<Butterfly />
-							<SocialsText>{socials ? socials.bluesky : ""}</SocialsText>
-						</SocialsItem>
-						<SocialsItem>
-							<DiscordLogo />
-							<SocialsText>{socials ? socials.discord : ""}</SocialsText>
-						</SocialsItem>
-					</SocialsRow>
+					<CarouselComponent speed={10000} transitionSpeed={3000}>
+						{socials && socials.map((group, groupIndex) => (
+							<CarouselItem key={groupIndex}>
+								<SocialsRow>
+									{group.items.map((entry, entryIndex) => (
+										<SocialsItem key={entryIndex}>
+											{getSocialPlatformIcon(entry.platform)}
+											<SocialsText>{entry.social}</SocialsText>
+										</SocialsItem>
+									))}
+								</SocialsRow>
+							</CarouselItem>
+						))}
+						{!socials && (
+							<div></div>
+						)}
+					</CarouselComponent>
 				</TextArea>
 			</Content>
 		</StyledBreakScreen>

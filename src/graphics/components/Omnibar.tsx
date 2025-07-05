@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import { CarouselComponent } from './CarouselComponent';
-import { YoutubeLogo, DiscordLogo, TwitterLogo, Butterfly } from "@phosphor-icons/react";
 import { Socials } from 'schemas/socials';
 import { EventData, EventInfo } from 'schemas/eventData';
 import { IntermissionData } from 'schemas/intermissionData';
 import { useReplicant } from '@nodecg/react-hooks';
-import { formatDateHM, formatDateMDY } from '../../helpers/utils'
+import { formatDateHM, formatDateMDY, getSocialPlatformIcon } from '../../helpers/utils'
 
 export const Omnibar: React.FC = () => {
 	const [eventData, setEventData] = useReplicant<EventData>('eventData', { bundle: 'squidwest-layout-controls'});
@@ -73,23 +72,18 @@ export const Omnibar: React.FC = () => {
 				</TourneyWrapper>
 			</TextOmnibarItem>
             <CarouselWrapper $border={true}>
-				<CarouselComponent speed={5000} transitionSpeed={1000}>
-					<CarouselRow>
-                        <StyledYoutubeLogo />
-                        <LogoText>{socials ? socials.youtube : ""}</LogoText>
-					</CarouselRow>
-					<CarouselRow>
-                        <StyledTwitterLogo />
-                        <LogoText>{socials ? socials.twitter : ""}</LogoText>
-					</CarouselRow>
-					<CarouselRow>
-                        <StyledButterfly />
-                        <LogoText>{socials ? socials.bluesky : ""}</LogoText>
-					</CarouselRow>
-					<CarouselRow>
-                        <StyledDiscordLogo />
-                        <LogoText>{socials ? socials.discord : ""}</LogoText>
-					</CarouselRow>
+				<CarouselComponent speed={7000} transitionSpeed={1000}>
+					{socials && socials.flatMap((group, groupIndex) => {
+
+						return [(<CarouselRow key={groupIndex}><LogoText>{`Follow ${group.name}!`}</LogoText></CarouselRow>),
+							group.items.map((entry, entryIndex) => (
+								<CarouselRow key={`${groupIndex} ${entryIndex}`}>
+									{getSocialPlatformIcon(entry.platform)}
+									<LogoText>{entry.social}</LogoText>
+								</CarouselRow>
+							))
+						]
+					})}
 				</CarouselComponent>
 			</CarouselWrapper>
             <OmnibarElement as="img" src='/bundles/squid-waukee-layouts/images/SW_Logo.png' alt="SquidWest Logo" />
@@ -207,30 +201,12 @@ const CarouselRow = styled.div`
     max-height: 100%;
     height: 100%;
 	font-size: 40pt;
-`;
 
-const StyledYoutubeLogo = styled(YoutubeLogo)`
-	width: 1em;
-    object-fit: contain;
-	margin-right: 20px;
-`;
-
-const StyledTwitterLogo = styled(TwitterLogo)`
-	width: 1em;
-    object-fit: contain;
-	margin-right: 20px;
-`;
-
-const StyledButterfly = styled(Butterfly)`
-	width: 1em;
-    object-fit: contain;
-	margin-right: 20px;
-`;
-
-const StyledDiscordLogo = styled(DiscordLogo)`
-	width: 1em;
-    object-fit: contain;
-	margin-right: 20px;
+	svg {
+		width: 1em;
+    	object-fit: contain;
+		margin-right: 10px;
+	}
 `;
 
 const LogoText = styled.div`
