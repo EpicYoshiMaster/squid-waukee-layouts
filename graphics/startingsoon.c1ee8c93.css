@@ -1,0 +1,55 @@
+:root {
+  --break-main-text: #23eb00;
+  --break-main-outline: #fff;
+  --break-socials-text: #f10059;
+  --break-socials-outline: #fff;
+  --feed-large-color: #eae6f3;
+  --feed-large-border: #262261;
+  --feed-small-color: #eae6f3;
+  --feed-small-border: #262261;
+  --omnibar-color: #262261;
+  --omnibar-text: #fff;
+  --omnibar-divider: #f3ec31;
+  --teams-border: #262261;
+  --teams-text: #262261;
+  --teams-inner: #f3ec31;
+  --teams-score-text: #f3ec31;
+  --teams-score-inner: #262261;
+  --commentary-text: #a72456;
+  --commentary-tag: #a72456;
+  --commentary-pronouns: #eae6f3;
+  --game-title-text: #f3ec31;
+  --game-title-bg: #262261;
+  --game-main-text: #262261;
+  --game-main-bg: #f3ec31;
+  --game-sub-text: #f3ec31;
+  --game-sub-bg: #262261;
+  --game-border: #b31451;
+  --credits-text: #fff;
+  --credits-bg: #000;
+}
+
+@font-face {
+  font-family: Saira;
+  src: url("Saira_Condensed-Bold.6bf15f5e.ttf");
+}
+
+@font-face {
+  font-family: Saira Extra;
+  src: url("Saira_ExtraCondensed-ExtraBoldItalic.be3b9650.ttf");
+  font-weight: bolder;
+}
+
+body {
+  margin: 0;
+  font-family: Saira;
+}
+
+.monospace {
+  font-family: monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+/*# sourceMappingURL=startingsoon.c1ee8c93.css.map */
